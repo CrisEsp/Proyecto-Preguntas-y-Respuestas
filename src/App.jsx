@@ -45,7 +45,8 @@ function App() {
           {" "}
           Obtuviste { puntuacion} de {preguntas.length}{" "}
         </span>
-        <button onClick={()=>(window.location.hfer="/")}>
+        {/* regresa a la pantalla de inicio */}
+        <button onClick={()=>(window.location.href="/")}> 
           {" "} Volver a Jugar
         </button>
       </div>
@@ -62,15 +63,39 @@ function App() {
         <div className="título-pregunta">
           {preguntas[preguntaActual].titulo}</div>
         <div>
+          {!isDisabled ?(  
           <span className="tiempo-restante">
             Tiempo restante: {tiempoRestante}{" "}
-          </span>
+          </span>        
+        ):(
+          <button
+          onClick={()=>{
+            setTiempoRestante(10);
+            setIsDisabled(false);
+            setPreguntaActual(preguntaActual+1);
+          }}
+          >
+            Continuar
+          </button>
+        )}
         </div>
       </div>
        
       <div className="lado-derecho">
         {preguntas[preguntaActual].opciones.map((respuesta)=>(
-          <button key={respuesta.textoRespuesta}  onClick = {(e) => handleAnswerSubmit(respuesta.isCorrect, e)} >{respuesta.textoRespuesta} </button>
+          <button 
+          disabled={isDisabled}
+          key={respuesta.textoRespuesta}  
+          onClick = {(e) => { handleAnswerSubmit(respuesta.isCorrect, e);
+          
+          //Retarda 1.5 segundo al momento de reiniciar el timmer  
+          setTimeout(()=>{      
+            setTiempoRestante(10);   
+          },1500); 
+          }}
+          >
+          {respuesta.textoRespuesta}
+          </button>
         ))}
       </div>
     </main>

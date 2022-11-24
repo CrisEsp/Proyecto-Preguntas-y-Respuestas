@@ -12,7 +12,7 @@ const preguntas = [
     {
         titulo: "¿Color del mar?",
         opciones:[
-            { textoRespuesta: "verde", isCorrect: false},
+            { textoRespuesta: "violeta", isCorrect: false},
             { textoRespuesta: "azul", isCorrect: true},
             { textoRespuesta: "rojo", isCorrect: false},
             { textoRespuesta: "verde", isCorrect: false},
